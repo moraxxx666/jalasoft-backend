@@ -1,9 +1,10 @@
-const express = require("express");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const cors = require("cors");
-const config = require("./config");
-require("./database");
+import express from "express";
+import morgan from "morgan";
+import helmet from "helmet";
+import cors from "cors";
+import config from "./config";
+import("./database");
+import APIRoutes from "./routes/api.routes";
 // Initialization
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // rutas
-
+app.use("/api", APIRoutes);
 //Iniciando el server
 app.listen(config.PORT, () => {
   console.log(`App runing on port ${config.PORT}`);
